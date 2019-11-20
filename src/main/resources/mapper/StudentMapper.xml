@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.example.demo.dao.StudentDao">
+
+    <sql id="TABLE">
+        student
+    </sql>
+
+    <sql id="FIELDS">
+        id,name,age,sex
+    </sql>
+
+    <insert id="insert" parameterType="com.example.demo.pojo.Student" useGeneratedKeys="true" keyProperty="id">
+        insert into
+        <include refid="TABLE"></include>
+        (id,name,age,sex)
+        value (#{id},#{name},#{age},#{sex})
+    </insert>
+
+
+    <select id="findByName" parameterType="java.lang.String" resultType="com.example.demo.pojo.Student">
+        select
+        <include refid="FIELDS"></include>
+        from <include refid="TABLE"></include>
+        where name=#{name}
+    </select>
+
+</mapper>
